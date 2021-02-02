@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>eShop</title>
+    <link rel="shortcut icon" href="https://c7.hotpng.com/preview/123/106/539/logo-apple-icon-information-apple-logo-png.jpg">
 </head>
 
 <body>
@@ -20,6 +21,7 @@
                     </button>
                 </form>
                 <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+                <span class="counter">({{ counter }})</span>
                 <cart :cart-items="cartItems" :img="imgCart" :visibility="showCart" @remove="remove"></cart>
             </div>
         </header>
