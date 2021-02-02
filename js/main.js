@@ -11,6 +11,7 @@ const app = new Vue ({
         filtered: [],
         imgCart: 'https://placehold.it/70x60',
         products: [],
+        counter: 0,
         imgProduct: 'https://placehold.it/200x150'
     },
     methods: {
@@ -31,6 +32,7 @@ const app = new Vue ({
                            this.cartItems.push(prod)
                        }
                     }
+                    this.countCart()
                 })
         },
         remove(item) {
@@ -43,7 +45,18 @@ const app = new Vue ({
                             this.cartItems.splice(this.cartItems.indexOf(item), 1);
                         }
                     }
+                    this.countCart()
                 })
+        },
+        countCart() {
+            let count = 0;
+            this.cartItems.forEach(item => {
+                count += item.quantity;
+                this.counter = count;
+            });
+            if (this.cartItems == 0) {
+                this.counter = 0
+            }            
         },
         filter() {
             let regexp = new RegExp(this.userSearch, 'i');
@@ -56,6 +69,7 @@ const app = new Vue ({
                 for (let item of data.contents) {
                     this.$data.cartItems.push(item);
                 }
+                this.countCart()
             });
         this.getJson(`${API + this.catalogUrl}`)
             .then(data => {
